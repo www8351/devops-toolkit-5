@@ -2,7 +2,7 @@
 
 # 🧰 5-DevOps-Toolkit
 
-### `5 folders` · `24 single-purpose scripts` · `1 shared engine` · `53 tests` · `5 green CI checks`
+### `5 folders` · `25 single-purpose tools` · `1 shared engine` · `53 tests` · `5 green CI checks`
 
 **Turning a raw Linux command cheat-sheet into a working, guarded DevOps toolkit.**
 *הופך רשימת פקודות לינוקס גולמית לערכת כלים אמיתית, מסודרת ומוגנת.*
@@ -38,7 +38,7 @@
 This repository is a **portfolio of small, sharp shell scripts** built from a hand-written list of Linux,
 networking, Docker and AWS commands.
 
-Instead of one giant script, the commands are composed into **24 focused tools** spread across **5 themed
+Instead of one giant script, the commands are composed into **25 focused tools** spread across **5 themed
 folders**. Every tool does *one* thing well, sources a **shared engine** (`lib/common.sh`), and ships with
 help text, dependency checks and safety guards.
 
@@ -55,7 +55,7 @@ The point isn't the commands themselves it's the **assembly**: how primitives li
 המאגר הזה הוא **תיק עבודות של סקריפטים קטנים וחדים** שנבנו מתוך רשימת פקודות לינוקס, רשת, Docker ו-AWS
 שנכתבה ביד.
 
-במקום סקריפט ענק אחד, הפקודות מורכבות ל-**24 כלים ממוקדים** הפרוסים על פני **5 תיקיות נושאיות**. כל כלי
+במקום סקריפט ענק אחד, הפקודות מורכבות ל-**25 כלים ממוקדים** הפרוסים על פני **5 תיקיות נושאיות**. כל כלי
 עושה *דבר אחד* טוב, טוען **מנוע משותף** (`lib/common.sh`), ומגיע עם מסך עזרה, בדיקות תלויות ומנגנוני
 הגנה.
 
@@ -106,7 +106,7 @@ graph TD
 
 Every script `source`s **`lib/common.sh`** a single shared engine that provides coloured logging,
 `confirm` prompts, `require_root` / `need_cmd` guards and a `run` wrapper that honours `DRY_RUN=1`. One
-library, 24 consumers **DRY by design**, not copy-paste.
+library, 25 consumers **DRY by design**, not copy-paste.
 
 ---
 
@@ -147,6 +147,11 @@ Every script follows the same defensive contract:
 - **`require_root`** refuses to run privileged tools as a normal user.
 - **`confirm`** asks before any destructive action — bypass in CI with `ASSUME_YES=1`.
 - **`DRY_RUN=1`** prints what *would* happen instead of doing it.
+
+> Two files in `04-network-ssh/` are helpers rather than tools and are exempt from the `-h`
+> contract on purpose: `name_echo.sh` (an interactive demo) and `setup.sh` (a venv
+> bootstrapper for `ssh_toolkit`). The bats smoke test skips exactly those two and enforces the
+> contract on everything else.
 
 ---
 
@@ -201,7 +206,8 @@ make all           # lint + test
 
 **Shipped**
 
-- ✅ 24 guarded tools across 5 modules on one shared engine (`lib/common.sh`)
+- ✅ 25 guarded tools across 5 modules on one shared engine (`lib/common.sh`)
+      (24 shell scripts + one Python tool, `05/ec2-deploy.py`)
 - ✅ `ssh_toolkit` cross-platform (Windows / macOS / Linux) Python SSH automation
 - ✅ Bilingual (HE / EN) documentation, published to GitHub
 - ✅ **CI** shellcheck + bats + pytest + ruff + Makefile-parse on every push & PR

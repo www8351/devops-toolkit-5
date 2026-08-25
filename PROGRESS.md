@@ -4,6 +4,27 @@ A dated log of what happened, what was tried, what worked.
 
 ---
 
+## 2026-08-25 — README accuracy audit (tool count corrected)
+
+**What was done**
+- Audited every claim in `README.md` against the repository itself rather than against memory.
+- **Corrected the tool count from 24 to 25.** The header, the English and Hebrew intros, the
+  "one library, N consumers" line and the roadmap all said 24, while the module table
+  (5 folders x 5 scripts) and the command index both list 25. The real split is **24 shell
+  scripts + one Python tool** (`05-docker-devops/ec2-deploy.py`).
+- Documented the two deliberate exemptions from the `-h` contract — `name_echo.sh` (interactive
+  demo) and `setup.sh` (venv bootstrapper) — which `tests/bats/help_smoke.bats` skips by name.
+
+**What was verified (and held up)**
+- `53 tests` — 24 bats (`common.bats` 23 + `help_smoke.bats` 1) + 29 pytest. `pytest 04-network-ssh/tests`
+  re-run here: **29 passed**.
+- `5 green CI checks` — 5 jobs across 2 workflow files: shellcheck+`bash -n`, bats, makefile,
+  py_compile+ruff, pytest.
+- Repository layout, safety model, and the command→script index all match the tree.
+
+**What did not change**
+- No script, test, or CI change. Documentation only.
+
 ## 2026-07-02 — README overhaul (Quality & CI + Roadmap) & name alignment
 
 **Goal:** Surface the hardening work in the README and give the repo a clear roadmap and cleaner design.

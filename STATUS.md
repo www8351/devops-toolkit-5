@@ -1,6 +1,6 @@
 # STATUS
 
-_Last updated: 2026-07-02_
+_Last updated: 2026-08-25_
 
 ## Where the project stands
 **v1 complete + hardened.** A 5-module DevOps shell toolkit is built, tested and pushed to GitHub as a
@@ -8,6 +8,11 @@ public repo. Now **CI-gated** (shellcheck + bats + pytest + Makefile-parse + ruf
 **tested** (24 bats + 29 pytest = 53), with a **task runner** (`make` / `tasks.ps1`) and **contributor docs**
 (`CONTRIBUTING.md`, `docs/demo.sh` + recording guide). The 4-phase upgrade (CI → Tests → Task runner →
 Docs) is done; each phase landed as small atomic commits, pushed per phase.
+
+**2026-08-25 — README claims re-audited against the repo.** The tool count was wrong everywhere it
+was stated as a headline number: the toolkit ships **25 tools** (24 shell + `ec2-deploy.py`), not 24.
+Fixed in the header, both intros, the DRY paragraph and the roadmap. Test and CI counts (53 tests,
+5 CI jobs) were re-verified and are correct as written. Documentation only — no code change.
 
 ## Done
 - [x] `git init` on `main`, repo scaffolding (`.gitignore`, `.editorconfig`, `LICENSE` MIT).
